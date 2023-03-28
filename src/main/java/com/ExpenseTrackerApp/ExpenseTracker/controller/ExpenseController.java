@@ -3,6 +3,9 @@ package com.ExpenseTrackerApp.ExpenseTracker.controller;
 import com.ExpenseTrackerApp.ExpenseTracker.entity.Expense;
 import com.ExpenseTrackerApp.ExpenseTracker.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +18,8 @@ public class ExpenseController {
     private ExpenseService expenseService;
 
     @GetMapping("/expenses")
-    public List getAllExpenses(){
-        return expenseService.ListgetAllExpenses();
+    public List<Expense> getAllExpenses(Pageable pageable){
+        return expenseService.getAllExpenses(pageable).toList();
 
     }
 
@@ -32,6 +35,7 @@ public class ExpenseController {
 
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/expenses/add")
     public Expense saveExpenses(@RequestBody Expense expense){
         return expenseService.saveExpenseDetails(expense);

@@ -1,6 +1,8 @@
 package com.ExpenseTrackerApp.ExpenseTracker.service;
 
 import com.ExpenseTrackerApp.ExpenseTracker.entity.Expense;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 @Service
 public interface ExpenseService {
 
-    List<Expense> ListgetAllExpenses();
+    Page<Expense> getAllExpenses(Pageable pageable);
 
     Expense getExpenseById(Long id);
 

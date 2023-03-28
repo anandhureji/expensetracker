@@ -1,9 +1,12 @@
 package com.ExpenseTrackerApp.ExpenseTracker.service;
 
 
+import com.ExpenseTrackerApp.ExpenseTracker.Exception.ExpenseNotFoundException;
 import com.ExpenseTrackerApp.ExpenseTracker.Repository.ExpenseRepository;
 import com.ExpenseTrackerApp.ExpenseTracker.entity.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +19,8 @@ public class ExpenseServiceImpl implements ExpenseService{
     private ExpenseRepository expenseRepository;
 
     @Override
-    public List<Expense> ListgetAllExpenses() {
-        return expenseRepository.findAll();
+    public Page<Expense> getAllExpenses(Pageable pageable) {
+        return expenseRepository.findAll(pageable);
     }
 
     @Override
@@ -26,7 +29,7 @@ public class ExpenseServiceImpl implements ExpenseService{
         if(byId.isPresent()){
             return byId.get();
         }
-        throw  new RuntimeException("Expense is not found with id ,"+id);
+        throw  new ExpenseNotFoundException("Expense is not found with id ,"+id);
 
     }
 
