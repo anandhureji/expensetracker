@@ -1,6 +1,8 @@
 package com.ExpenseTrackerApp.ExpenseTracker.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,8 @@ public class Expense {
     private Long id;
 
     @Column(name = "expense_name")
+    @NotNull(message = "Expense name must not be null")
+    @Size(min = 2,message = "Expense must be atleast 3 character")
     private String name;
 
 

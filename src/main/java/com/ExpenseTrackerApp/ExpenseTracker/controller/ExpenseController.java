@@ -2,6 +2,7 @@ package com.ExpenseTrackerApp.ExpenseTracker.controller;
 
 import com.ExpenseTrackerApp.ExpenseTracker.entity.Expense;
 import com.ExpenseTrackerApp.ExpenseTracker.service.ExpenseService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,12 +38,17 @@ public class ExpenseController {
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/expenses/add")
-    public Expense saveExpenses(@RequestBody Expense expense){
+    public Expense saveExpenses(@Valid @RequestBody Expense expense){
         return expenseService.saveExpenseDetails(expense);
     }
 
     @PutMapping("/expenses/update/{id}")
     public Expense updateExpense(@PathVariable Long id,@RequestBody Expense expense){
         return expenseService.updateExpenseDetails(id,expense);
+    }
+
+    @GetMapping("/expenses/category")
+    public List<Expense> getExpenseByCategory(@RequestParam String category,Pageable pageable) {
+        return expenseService.readByCategory(category,pageable);
     }
 }

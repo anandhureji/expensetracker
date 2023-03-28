@@ -53,4 +53,9 @@ public class ExpenseServiceImpl implements ExpenseService{
         existingExpense.setDate(expense.getDate()!=null?expense.getDate():existingExpense.getDate());
         return expenseRepository.save(existingExpense);
     }
+
+    @Override
+    public List<Expense> readByCategory(String category, Pageable pageable) {
+        return expenseRepository.findByCategory(category,pageable).toList();
+    }
 }
