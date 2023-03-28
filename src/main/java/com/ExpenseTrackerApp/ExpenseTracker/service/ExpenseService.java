@@ -9,4 +9,12 @@ import java.util.List;
 public interface ExpenseService {
 
     List<Expense> ListgetAllExpenses();
+
+    Expense getExpenseById(Long id);
+
+    void deleteExpenseById(Long id);
+
+    Expense saveExpenseDetails(Expense expense);
+
+    Expense updateExpenseDetails(Long id,Expense expense);
 }
