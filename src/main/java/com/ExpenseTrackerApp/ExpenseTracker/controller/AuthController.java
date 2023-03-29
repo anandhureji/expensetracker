@@ -27,4 +27,6 @@ public class AuthController {
     public ResponseEntity<User> save(@Valid @RequestBody UserModel userModel){
         return new ResponseEntity<User>(userService.createUser(userModel),HttpStatus.CREATED);
     }
+
+
 }
