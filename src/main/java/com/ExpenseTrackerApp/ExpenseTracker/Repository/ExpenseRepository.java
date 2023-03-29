@@ -12,4 +12,6 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long> {
 
     Page<Expense> findByCategory(String category, Pageable pageable);
 
+    Page<Expense> findByNameContaining(String keyword,Pageable pageable);
+
 }

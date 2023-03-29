@@ -51,4 +51,9 @@ public class ExpenseController {
     public List<Expense> getExpenseByCategory(@RequestParam String category,Pageable pageable) {
         return expenseService.readByCategory(category,pageable);
     }
+
+    @GetMapping("/expenses/name")
+    public List<Expense> getAllExpensesByName(@RequestParam String name,Pageable pageable){
+        return expenseService.readByName(name,pageable);
+    }
 }
