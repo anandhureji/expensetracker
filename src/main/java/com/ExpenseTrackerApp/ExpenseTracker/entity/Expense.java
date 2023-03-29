@@ -1,8 +1,6 @@
 package com.ExpenseTrackerApp.ExpenseTracker.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +8,14 @@ import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
+
+import static javax.persistence.GenerationType.*;
 
 @Data
 @AllArgsConstructor
@@ -23,7 +26,7 @@ import java.util.Date;
 public class Expense {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @Column(name = "expense_name")
